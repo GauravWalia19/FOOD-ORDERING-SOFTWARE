@@ -1,0 +1,25 @@
+     BEVERAGES
+001 Choco frappe
+002 Stawberry Shake
+003 Mango Shake
+004 Banana Shake
+005 Protien Shake
+006 Lemon Soda
+008 Patiala Lassi
+009 Coconut Special
+010 Mountain Dew
+
+   SWEETDISH
+011 Badam Halwa
+012 Chocolate Lava Cake
+013 Cinnamon Rolls
+014 Doughnut
+015 Mango Desert
+
+    FASTFOOD
+016 Spring Rolls
+017 Veg Burgzz
+018 Noodles
+019 Agra Chat
+020 Spicy Momos
+021 Pizza
