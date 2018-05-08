@@ -45,7 +45,7 @@ class ITEM
 		{
       	if(strcmp(de->d_name,".")==0 || strcmp(de->d_name,"..")==0)
       	{
-      		//do nothing
+      		//FOR NOT SHOWING . ..
       	}
       	else
       	{	
@@ -108,7 +108,7 @@ class ITEM
       	fscanf(fgg,"%d",&available);
       	
       	//CALCULATIONS
-      	//BILL
+      	//RECENT BILL
       	if(quantity<=presentquantity)
       	{
       		bill=bill+(price*quantity);
@@ -159,12 +159,30 @@ class ITEM
 		//NOT AVAILABLE
 		else
 		{
-			bill=0;
-			cout << "ITEM NOT AVAILABLE IN THE SHOP"<<endl;
+			//bill=0;
+			cout << "SORRY!!!ITEM NOT AVAILABLE IN THE SHOP"<<endl;
 		}
 		
 	//OUTPUTTING
 	cout << "RECENT BILL:"<<bill<<endl;	
+	}
+	//CHECKING AVAIL VECTOR
+	int availvalue(char *itemname)
+	{
+		int ck=0;
+		//CHECKING IN VECTOR OR MY DATABASE
+		for(register int i=0;i<avail.size();i++)
+		{
+			if(avail[i] == itemname)
+			{
+				ck=1;
+			}
+			else
+			{
+				ck=0;
+			}
+		}
+		return ck;
 	}
 	
 	void totalbill()
@@ -186,33 +204,74 @@ class USER:public ITEM
 		cout << "Enter your username SIR/MADAM" << endl;
 		cin >> username;
 		cout << "Enter your phone no" <<endl;
-		cin >> phoneno;
-			
+		//CHECKING PHONE NUMBER IS VALID OR NOT
+		while(1)
+		{
+			cin >> phoneno;
+			int p = phoneno/1000000000;
+			if(p>=1 && p<=9)
+			{
+				break;
+			}
+			else
+			{
+				cout << "ENTER A VALID PHONE NUMBER" << endl;
+			}
+		}	
 	}
 	void get_item_data()//GETTING USER ITEM BY USER
 	{
 		cout << "WHICH ITEM DO YOU LIKE U EAT SIR/MADAM" << endl;
 		cin >> itemname;
 		cout << "SIR/MADAM CAN YOU PLEASE TELL US QUANTITY" << endl;
-		cin >> quantity;
+		//CHECKING QUANTITY NOT BE 0
+		while(1)
+		{
+			cin >> quantity;
+			if(quantity != 0)
+			{
+				break;
+			}
+			cout << "ENTER VALID QUANTITY" << endl;
+		}
 	}
 	void put_data_file() //WRITITNG DATA TO FILE OF USER
 	{
-		char str[50]="ORDERS/";
-		strcat(str,username);
-		FILE *ptr;
-		ptr = fopen(str,"a+");
-		if(ptr == NULL)
-		{
-			cout << "SORRY EXISTING NOW" <<endl;
-			exit(1);
+		//GETTING AVAILABLE FROM ABOVE
+		int av = availvalue(itemname);
+			
+		/*	
+		//ONLY WRITE WHEN AVAILABLE
+		if(av==1)
+		{	
+			char str[50]="ORDERS/";
+			strcat(str,username);
+			FILE *ptr;
+			ptr = fopen(str,"a+");
+			if(ptr == NULL)
+			{
+				cout << "SORRY EXISTING NOW" <<endl;
+				exit(1);
+			}
+			//WRITING A FILE
+			fprintf(ptr,"%s\n",itemname);
+			fprintf(ptr,"%d\n\n",quantity);
+			fclose(ptr);
 		}
-		//WRITING A FILE
-		//fprintf(ptr,"%s\n",username);
-		//fprintf(ptr,"%d\n",phoneno);
-		fprintf(ptr,"%s\n",itemname);
-		fprintf(ptr,"%d\n\n",quantity);
-		fclose(ptr);
+		*/
+			char str[50]="ORDERS/";
+			strcat(str,username);
+			FILE *ptr;
+			ptr = fopen(str,"a+");
+			if(ptr == NULL)
+			{
+				cout << "SORRY EXISTING NOW" <<endl;
+				exit(1);
+			}
+			//WRITING A FILE
+			fprintf(ptr,"%s\n",itemname);
+			fprintf(ptr,"%d\n\n",quantity);
+			fclose(ptr);
 	}
 	void check()
 	{
@@ -220,10 +279,33 @@ class USER:public ITEM
 	}
 	void totaluserbill()
 	{
-		cout <<BOLD<< "BILL"<<endl;
-		cout << "-----------------------------------------------------------------"<<endl;
+		cout <<BOLD<< "\t\t\t\t  BILL"<<endl;
+		cout << "--------------------------------------------------------------------------------"<<endl;
+		cout <<"USERNAME: "<< username << endl;
+		cout <<"PHONE NUMBER: " << phoneno << endl;
+		
+		////////////////////////////////////////////////////
+		char strs[50]="ORDERS/";
+		strcat(strs,username);
+		FILE *ptr;
+		ptr = fopen(strs,"r");
+		char ch;
+		while((ch=fgetc(ptr))!=EOF)
+		{
+			cout << ch;
+		}
+		fclose(ptr);
+		////////////////////////////////////////////////////
 		totalbill();
+		cout << "--------------------------------------------------------------------------------"<<endl;
 		cout << RESET;
+		
+		//cleaning the user data file
+		char hell[50]="ORDERS/";
+		strcat(hell,username);
+		FILE *ggp;
+		ggp = fopen(hell,"w");
+		fclose(ggp);
 	}
 };
 
@@ -231,7 +313,7 @@ class USER:public ITEM
 int main()
 {
 	USER A;
-	char ans[5];   //VARAIBLE FOR ANSWERING
+	char ans[5];   //VARIABLE FOR ANSWERING
 	cout << BOLD <<"Welcome to our SHOP" << endl;
 	cout << "Hope you like it!!!!"<< endl;
 	cout << endl;
