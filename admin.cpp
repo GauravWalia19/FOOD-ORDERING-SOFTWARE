@@ -3,6 +3,7 @@
 #include <cstdlib>
 #include <cstring>
 #include <cstdio>
+#include <ctime>
 using namespace std;
 
 class item
@@ -76,11 +77,13 @@ int main()
 	cout << "ADMIN OPTIONS" << endl;
 	
 	cout << "0. Exit" << endl;
-	cout << "1. Add new item in database" << endl;
-	cout << "2. Delete old item in database" << endl;
-	cout << "3. Check Remaining Stock" << endl;
-	cout << "4. Read main code" << endl; 
-	cout << "5. Read License" << endl; 
+	cout << "1. Add new item in user mode" << endl;
+	cout << "2. Add new item in vendor mode" << endl;
+	cout << "3. Check profit in a day" << endl;
+	cout << "4. Delete old item in database" << endl;
+	cout << "5. Check Remaining Stock" << endl;
+	cout << "6. Read main code" << endl; 
+	cout << "7. Read License" << endl; 
 	 
 	cout << "Enter your choice" << endl;
 	cin >> choice;
@@ -94,9 +97,33 @@ int main()
 	}
 	else if(choice==2)
 	{	
+		
 	}
 	else if(choice==3)
 	{
+		FILE *fptr;
+		fptr = fopen("sale","r"); //open file for reading
+		if(fptr == NULL)
+		{
+			exit(67);
+		}
+		int num;
+		int sum=0;
+		char ch = fgetc(fptr);
+		while((ch=fgetc(fptr)) != EOF)
+		{
+			fscanf(fptr,"%d",&num);
+			cout << num<<endl;
+			sum=sum+num;
+		}
+		fclose(fptr);
+		cout << "TOTAL PROFIT: "<<sum<<endl;
+		
+		time_t my_time = time(NULL);
+ 
+    	// ctime() used to give the present time
+    	string hello = ctime(&my_time);
+    	cout << hello << endl;
 	}
 	else if(choice==4)
 	{

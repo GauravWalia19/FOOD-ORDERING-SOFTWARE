@@ -314,11 +314,7 @@ int main()
 {
 	USER A;
 	char ans[5];   //VARIABLE FOR ANSWERING
-	cout << BOLD <<"Welcome to our SHOP" << endl;
-	cout << "Hope you like it!!!!"<< endl;
-	cout << endl;
-	cout << "WE HAVE TOO MUCH ITEMS IN OUT SHOP"<< endl;
-	cout << "HERE IS THE MENU CARD" << RESET <<endl;
+	cout << BOLD << "HERE IS THE MENU CARD" << RESET <<endl;
 	A.get_user_data();  //GETTING USER INFORMATION
 	//MENU CARD HERE -READ THE FILE IN DATABASE
 	A.readDatabase(); 

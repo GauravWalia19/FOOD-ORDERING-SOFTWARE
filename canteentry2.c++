@@ -1,5 +1,6 @@
 #include<iostream>
 #include<fstream>
+#include<string>
 #include<cstring>
 #include<stdlib.h>
 #include"colors.h"
@@ -76,12 +77,15 @@ class FILES:protected Discount
 	fstream itemlist;
 	string line;
 	fstream pricelist;
+        ofstream sale;
+        fstream quantitylist;
   	public:
   	FILES()
   	{
    	pricelist.open("pricelist.txt");
-
-   	if(pricelist.is_open()) //check that all files are opened or not
+        sale.open("salelist.txt",ios::app);
+        quantitylist.open("quantities.txt");
+   	if(pricelist.is_open() && sale.is_open() && quantitylist.is_open()) //check that all files are opened or not
    	{
    		cout<<"file opened"<<endl;
    	}   
@@ -89,11 +93,11 @@ class FILES:protected Discount
   void bill(Customer &c)
   { int total =0;
      node<int>* t; 
-      t=c.pickfrombasket();  //pick from basket
+      t=c.pickfrombasket();  //pick address from basket
   
 while(t!=NULL)
     { 
-      total =total + getprice(t->giveitemid()) * (t->givequantity());
+      total =total + getprice(t->giveitemid()) * (t->givequantity()); //get values in basket 
         t=c.pickfrombasket(); 
      }
      cout <<BOLD<< "--------------------------------------------------"<<RESET<<endl;
@@ -102,8 +106,9 @@ while(t!=NULL)
 cout<<BYELLOW<<"Discount: Rs. "<<d<<RESET<<endl;  
  cout<<BBLUE<<"Netpayable: Rs. "<<total-d<<RESET<<endl;
  cout <<BOLD<< "--------------------------------------------------"<<RESET<<endl;
+   sale<<total<<endl;
 }
-  int getprice(int id)
+  int getprice(int id)   //used get price of particular id from file PRICELIST 
   { int i=1,price;
     string s;
   for(i=1;i!=id;i++)
@@ -111,14 +116,28 @@ cout<<BYELLOW<<"Discount: Rs. "<<d<<RESET<<endl;
    pricelist>>i>>price;
    return price;
   }
-  
+/************************************************************/
+int check(int itemid,int quantity)
+{ int i,itemq;
+  string s;
+  for(i=1;i<itemid;i++)
+  {getline(quantitylist,s);}
+  quantitylist>>i>>itemq;
+  if(itemq>quantity)
+  { return 1;}
+  else
+  {return 0;}
+/*************************************************************/
+}  
+
+
 };
 
 /******************************************* MAIN PROGRAM ***************************************************************/
 int main()
 { 
 	Customer c1;
-  	int itemid,quantity;
+  	int itemid,quantity,itemq;
   	FILES filesystem;
   	cout<<"SHOP NOW"<<endl;
   	cout<<"Enter itemid:";
@@ -127,10 +146,18 @@ int main()
   	{ 
 		cout<<"quantity:";
 		cin>>quantity;
-		c1.shop(itemid,quantity); //adding item with quantity in basket of customer
-		cout<<"Enter itemid:";
+ 		
+ 		if(filesystem.check(itemid,quantity))
+                {
+                c1.shop(itemid,quantity); //adding item with quantity in basket of customer
+              
+ 		}
+                else
+                {cout<<endl<<"Item quantity available is  unavailable"<<endl<<endl;} 
+                cout<<"Enter itemid:";
 		cin>>itemid;
-   }
+                
+       }
 	c1.showitem();	
 	filesystem.bill(c1);
  
