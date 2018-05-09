@@ -78,12 +78,10 @@ int main()
 	
 	cout << "0. Exit" << endl;
 	cout << "1. Add new item in user mode" << endl;
-	cout << "2. Add new item in vendor mode" << endl;
-	cout << "3. Check profit in a day" << endl;
-	cout << "4. Delete old item in database" << endl;
-	cout << "5. Check Remaining Stock" << endl;
-	cout << "6. Read main code" << endl; 
-	cout << "7. Read License" << endl; 
+	cout << "2. Check profit in a day" << endl;
+	cout << "3. Check Remaining Stock" << endl;
+	cout << "4. Read main code" << endl; 
+	cout << "5. Read License" << endl; 
 	 
 	cout << "Enter your choice" << endl;
 	cin >> choice;
@@ -96,13 +94,9 @@ int main()
 		I.one();
 	}
 	else if(choice==2)
-	{	
-		
-	}
-	else if(choice==3)
 	{
 		FILE *fptr;
-		fptr = fopen("sale","r"); //open file for reading
+		fptr = fopen("salelist.txt","r"); //open file for reading
 		if(fptr == NULL)
 		{
 			exit(67);
@@ -113,23 +107,43 @@ int main()
 		while((ch=fgetc(fptr)) != EOF)
 		{
 			fscanf(fptr,"%d",&num);
-			cout << num<<endl;
+			//cout << num<<endl;
 			sum=sum+num;
 		}
 		fclose(fptr);
 		cout << "TOTAL PROFIT: "<<sum<<endl;
 		
-		time_t my_time = time(NULL);
+		//time_t my_time = time(NULL);
  
     	// ctime() used to give the present time
-    	string hello = ctime(&my_time);
-    	cout << hello << endl;
+    	//string hello = ctime(&my_time);
+    	//cout << hello << endl;
+	}
+	else if(choice==3)
+	{
 	}
 	else if(choice==4)
 	{
+		cout << "Choose the option" <<endl;
+		int choice;
+		cin >> choice;
+		if(choice == 1)
+		{
+		}
+		else if(choice == 2)
+		{
+		}
 	}
 	else if(choice==5)
 	{
+		FILE *fp;
+		fp = fopen("LICENSE","r");
+		char c;
+		while((c=fgetc(fp))!=EOF)
+		{
+			cout << c;
+		}
+		fclose(fp);
 	}
 	else
 	{

@@ -5,7 +5,7 @@
 #include<stdlib.h>
 #include"colors.h"
 #include<fstream>
-#include "stllist.h"//our self made standard template library
+#include "stllist.h"//maded template library
 using namespace std;
 
 
@@ -57,7 +57,7 @@ class Discount
 	 		darr[i]=(i)*t*10;
 			discount[i]=t*(i);
 	 	}
-	 	//discount[i]=t*(i+1);
+
 	}
 	int dcomputate(int t)
 	{ 
@@ -93,11 +93,11 @@ class FILES:protected Discount
   void bill(Customer &c)
   { int total =0;
      node<int>* t; 
-      t=c.pickfrombasket();  //pick address from basket
+      t=c.pickfrombasket();  //pick address from cart
   
 while(t!=NULL)
     { 
-      total =total + getprice(t->giveitemid()) * (t->givequantity()); //get values in basket 
+      total =total + getprice(t->giveitemid()) * (t->givequantity()); //get values in cart
         t=c.pickfrombasket(); 
      }
      cout <<BOLD<< "--------------------------------------------------"<<RESET<<endl;
@@ -117,7 +117,7 @@ cout<<BYELLOW<<"Discount: Rs. "<<d<<RESET<<endl;
    return price;
   }
 /************************************************************/
-int check(int itemid,int quantity)
+int check(int itemid,int quantity)//check for availability of need item 
 { int i,itemq;
   string s;
   for(i=1;i<itemid;i++)
@@ -139,9 +139,12 @@ int main()
 	Customer c1;
   	int itemid,quantity,itemq;
   	FILES filesystem;
-  	cout<<"SHOP NOW"<<endl;
-  	cout<<"Enter itemid:";
-   cin >> itemid; 	
+  
+        cout<<"SHOP NOW"<<endl<<endl;
+  	
+       cout<<"Enter itemid:0 for exit"<<endl<<endl; 
+       cout<<"Enter itemid:";
+       cin >> itemid; 	
 	while(itemid) //do this unvalid itemid
   	{ 
 		cout<<"quantity:";
@@ -149,7 +152,7 @@ int main()
  		
  		if(filesystem.check(itemid,quantity))
                 {
-                c1.shop(itemid,quantity); //adding item with quantity in basket of customer
+                c1.shop(itemid,quantity); //adding item with quantity in cart of customer
               
  		}
                 else
@@ -158,8 +161,9 @@ int main()
 		cin>>itemid;
                 
        }
-	c1.showitem();	
-	filesystem.bill(c1);
+        cout<<endl<<"*************Bill***************"<<endl<<endl;
+	c1.showitem();	      //what are the item user has in its cart
+	filesystem.bill(c1);  //filesystem bill user
  
 return 0;
 }

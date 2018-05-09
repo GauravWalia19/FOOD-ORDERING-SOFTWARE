@@ -8,6 +8,7 @@ do
 echo "enter your choice USER/VENDOR/ADMIN/STOP"
 read str
 
+#VENDOR MODE
 if [ $str == "VENDOR" ]
 then
 echo "ORDER NUMBER: $order"
@@ -15,6 +16,7 @@ g++ project.cpp -o hello.out
 ./hello.out
 echo ""
 
+#USER MODE
 elif [ $str == "USER" ]
 then
 #############################################################
@@ -25,7 +27,7 @@ gnome-terminal -x sh -c "./abc.sh; bash"
 ############################################################
 
 echo "ORDER NUMBER: $order"   
-g++ canteentry2.c++ -o v
+g++ user.c++ -o v
 ./v
 
 elif [ $str == "ADMIN" ]
