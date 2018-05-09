@@ -4,8 +4,59 @@
 #include <cstring>
 #include <cstdio>
 using namespace std;
+
+class item
+{
+	char itemname[50];
+	int presentquantity;
+	int price;
+	float discount;
+	int available;
+	public:
+	item()
+	{
+		presentquantity = 0;
+		price = 0;
+		discount = 0.000000;
+		available = 0;
+	}
+	void one()
+	{
+		FILE *ptr;
+		char fullname[] = "DATABASE/";
+		
+		cout << "Enter the new name of the item";
+		cin >> itemname;
+		strcat(fullname,itemname);
+		//cout << fullname;
+		ptr = fopen(fullname,"w"); //check if name exists then not permit
+		
+		fprintf(ptr,"%s\n",itemname);
+		cout << "Enter the present quantity of the item" << endl;
+		cin >> presentquantity;
+		fprintf(ptr,"%d\n",presentquantity);
+		
+		cout << "Enter the price of the item" << endl;
+		cin >> price;
+		fprintf(ptr,"%d\n",price);
+		
+		cout << "Enter discount of the item" << endl;
+		cin >> discount;
+		fprintf(ptr,"%f\n",discount);
+		
+		cout << "Enter the availability" << endl;
+		cout << "0 - NOT AVAILABLE " << endl;
+		cout << "1 - AVAILABLE " << endl;		
+		cin >> available;
+		fprintf(ptr,"%d\n",available);
+		
+		fclose(ptr);
+	}	
+};
+
 int main()
 {
+	item I; //CREATING item object
 	char passwd[]="gaurav";
 	cout << "Enter the password: "<< endl;
 	char password[20];
@@ -39,18 +90,10 @@ int main()
 	}
 	else if(choice==1)
 	{
-		FILE *ptr;
-		char fullname[] = "DATABASE/";
-		char itemname[20];
-		cout << "Enter the new name of the item";
-		cin >> itemname;
-		strcat(fullname,itemname);
-		//cout << fullname;
-		ptr = fopen(fullname,"w"); //check if name exists then not permit
-		fclose(ptr);
+		I.one();
 	}
 	else if(choice==2)
-	{
+	{	
 	}
 	else if(choice==3)
 	{
@@ -63,5 +106,6 @@ int main()
 	}
 	else
 	{
+		exit(00);
 	}
 }
