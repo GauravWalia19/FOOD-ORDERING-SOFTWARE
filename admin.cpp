@@ -2,6 +2,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <cstring>
+#include <cstdio>
 using namespace std;
 int main()
 {
@@ -12,17 +13,19 @@ int main()
 	//VERIFICATION	
 	if(strcmp(passwd,password)==0)
 	{
-		cout << "verified";
+		cout << "Access Granted" << endl;
 	}
 	else
 	{
 		cout << "Access Denied!!!" << endl;
 		exit(99);
 	}
+	cout << "............................................................................." << endl;
 	int choice;
 	cout << "ADMIN OPTIONS" << endl;
 	
-	cout << "1. Add new item in database"<< endl;
+	cout << "0. Exit" << endl;
+	cout << "1. Add new item in database" << endl;
 	cout << "2. Delete old item in database" << endl;
 	cout << "3. Check Remaining Stock" << endl;
 	cout << "4. Read main code" << endl; 
@@ -30,21 +33,35 @@ int main()
 	 
 	cout << "Enter your choice" << endl;
 	cin >> choice;
-	switch()
+	if(choice==0)
 	{
-		case 0:
-		break;
-		case 1:
-		break;
-		case 2:
-		break;
-		case 3:
-		break;
-		case 4:
-		break;
-		case 5:
-		break;
-		default:
-		break;
+		exit(0);
+	}
+	else if(choice==1)
+	{
+		FILE *ptr;
+		char fullname[] = "DATABASE/";
+		char itemname[20];
+		cout << "Enter the new name of the item";
+		cin >> itemname;
+		strcat(fullname,itemname);
+		//cout << fullname;
+		ptr = fopen(fullname,"w"); //check if name exists then not permit
+		fclose(ptr);
+	}
+	else if(choice==2)
+	{
+	}
+	else if(choice==3)
+	{
+	}
+	else if(choice==4)
+	{
+	}
+	else if(choice==5)
+	{
+	}
+	else
+	{
 	}
 }
