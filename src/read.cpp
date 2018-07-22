@@ -1,6 +1,6 @@
 #include <iostream>
 #include <cstdio>
-#include<string>
+#include <string>
 #include <cstdlib>
 #include "colors.h"
 using namespace std;

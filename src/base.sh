@@ -12,8 +12,8 @@ read str
 if [ $str == "VENDOR" ]
 then
 echo "ORDER NUMBER: $order"
-g++ project.cpp -o hello.out
-./hello.out
+g++ project.cpp -o project.out
+./project.out
 echo ""
 
 #USER MODE
@@ -21,14 +21,14 @@ elif [ $str == "USER" ]
 then
 #############################################################
 #it will run command on other terminal
-echo -e '#!/bin/bash\ng++ read.cpp -o hello\n./hello' > abc.sh
+echo -e '#!/bin/bash\ng++ read.cpp -o read.out\n./read.out' > abc.sh
 chmod +x abc.sh
 gnome-terminal -x sh -c "./abc.sh; bash"
 ############################################################
 
 echo "ORDER NUMBER: $order"   
-g++ user.c++ -o v
-./v
+g++ user.cpp -o user.out
+./user.out
 
 elif [ $str == "ADMIN" ]
 then
