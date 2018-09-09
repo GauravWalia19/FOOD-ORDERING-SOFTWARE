@@ -43,7 +43,7 @@ This is a option to exit the application.
 git clone https://github.com/GauravWalia19/FOOD-ORDERING-SOFTWARE.git
 ```
 
-#### :octocat: Open the terminal and navigate to the project directory.
+#### :octocat: Open the terminal and navigate to the project directory
 
 #### :octocat: Navigate to src folder using
 
