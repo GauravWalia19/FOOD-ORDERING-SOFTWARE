@@ -1,4 +1,5 @@
 /*FOOD ORDERING SYSTEM*/
+/*VENDOR MODE*/
 #include <iostream>
 #include <cstdio>
 #include <cstring>
@@ -34,6 +35,7 @@ class ITEM
 		cout << BYELLOW<<"................................................................................"<<endl;
 		cout << "\t\t\t\t   MENU CARD\t\t\t\t"	 << endl;
 		cout << "ITEM\t\t\t\tPRICE" << RESET<<endl;
+		
 		//reading all files in directory
 		struct dirent *de;
 		DIR *dr = opendir("DATABASE");
@@ -43,42 +45,42 @@ class ITEM
 		}
 		while ((de = readdir(dr)) != NULL)
 		{
-      	if(strcmp(de->d_name,".")==0 || strcmp(de->d_name,"..")==0)
-      	{
-      		//FOR NOT SHOWING . ..
-      	}
-      	else
-      	{	
-      		//
-      		FILE *pt;
-      		available=0;
-      		char straw[]="DATABASE/";
-      		strcat(straw,de->d_name);
-      		//cout << straw << endl; //straw opening file name
-      		pt = fopen(straw,"r");
-      		fscanf(pt,"%s",name);
+			if(strcmp(de->d_name,".")==0 || strcmp(de->d_name,"..")==0)
+			{
+				//FOR NOT SHOWING . ..
+			}
+			else
+			{	
+				//
+				FILE *pt;
+				available=0;
+				char straw[50]="DATABASE/";
+				strcat(straw,de->d_name);
+				
+				pt = fopen(straw,"r");
+				fscanf(pt,"%s",name);
 				fscanf(pt,"%d",&presentquantity);
 				fscanf(pt,"%d",&price);
 				fscanf(pt,"%f",&discount);
-      		fscanf(pt,"%d",&available);
-      		//cout << name;
-      		if(available == 1)
-      		{
-      			avail.push_back(name);  //ADD DATA IN AVAILBILITYVECTOR
-      			cout <<BCYAN<<name<<RESET<<"\t\t\t";
-      			cout <<BGREEN << price << RESET<<endl; 
-      		}
-      		else if(available==0)
-      		{
-      			cout <<BRED<< name << " not available"<<RESET<<endl;
-      			available=0;		
-      		}
-      		fclose(pt);
-      	}
+				fscanf(pt,"%d",&available);
+				
+				if(available == 1)
+				{
+					avail.push_back(name);  //ADD DATA IN AVAILBILITYVECTOR
+					cout <<BCYAN<<name<<RESET<<"\t\t\t";
+					cout <<BGREEN << price << RESET<<endl; 
+				}
+				else if(available==0)
+				{
+					cout <<BRED<< name << " not available"<<RESET<<endl;
+					available=0;		
+				}
+				fclose(pt);
+			}
  		}
     	closedir(dr);
     	cout << BYELLOW<<"................................................................................"<<RESET<<endl;
-    	cout << BCYAN	<<"................................................................................"<<RESET<<endl;	 		
+    	cout << BCYAN	<<"................................................................................"<<RESET<<endl;	 
 	}
 	/************************************************************************************************************************************************/
 	void checkdatabase(char *itemname,int quantity) //checking of the user entered data 
@@ -317,8 +319,10 @@ int main()
 	cout << BOLD << "HERE IS THE MENU CARD" << RESET <<endl;
 	A.get_user_data();  //GETTING USER INFORMATION
 	//MENU CARD HERE -READ THE FILE IN DATABASE
-	A.readDatabase(); 
+	A.readDatabase();
+	// exit(0);
 	cout << "YOU CAN ORDER" << endl;
+	
 	while(1)
 	{		
 		A.get_item_data();  //GETTING DATA OF ONE ITEM BY the user
