@@ -45,44 +45,40 @@ git clone https://github.com/GauravWalia19/FOOD-ORDERING-SOFTWARE.git
 
 #### :octocat: Open the terminal and navigate to the project directory
 
-#### :octocat: Navigate to src folder using
+#### :octocat: Navigate to bin folder using
 
 ```bash
-cd src
+cd bin
 ```
 
 #### :octocat: For using USER MODE
 
 ```bash
-g++ user.cpp -o user.out
-./user.out
+bash user.sh
 ```
 
 #### :octocat: For using ADMIN MODE
 
 ```bash
-g++ admin.cpp -o admin.out
-./admin.out
+bash admin.sh
 ```
 
 #### :octocat: For watching MENU CARD
 
 ```bash
-g++ read.cpp -o read.out
-./read.out
+bash abc.sh
 ```
 
 #### :octocat: For using VENDOR MODE
 
 ```bash
-g++ project.cpp -o project.out
-./project.out
+bash vendor.sh
 ```
 
 #### :octocat: For running full project use
 
 ```bash
-bash base.sh
+bash main.sh
 ```
 
 ## :fries: SAMPLE RUN
