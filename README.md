@@ -29,8 +29,8 @@ This is a option to exit the application.
 
 ## :fries: DEPENDENCIES
 
-1. Linux
-2. Bash Shell in terminal
+1. Rainbow
+2. Linux terminal
 3. g++ compiler
 
 ## :fries: COMPILE AND RUN
