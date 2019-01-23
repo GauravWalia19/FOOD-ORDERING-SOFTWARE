@@ -91,20 +91,12 @@ bash base.sh
 
  S No. | Improvement | Progress
  ----- | ----------- | --------
- 1 | Improve Code Style | :x:
- 2 | Add new logic | :x:
- 3 | Add Database | :x:
- 4 | Make it more Dynamic | :x:
- 5 | Add UI | :x:
- 6 | Software | :x:
- 7 | Build for Windows | :x:
- 8 | Using makefiles | :x:
- 9 | Making it cross platform | :x:
- 10 | CONSOLE APPLICATION | :heavy_check_mark:
- 11 | Supported all linux | :heavy_check_mark:
- 12 | COLORFUL UI | :heavy_check_mark:
- 13 | USED RAINBOW | :heavy_check_mark:
- 14 | USED OWN LINKED LIST | :heavy_check_mark:
+ 1 | CONSOLE APPLICATION | :heavy_check_mark:
+ 2 | Supported all linux | :heavy_check_mark:
+ 3 | COLORFUL UI | :heavy_check_mark:
+ 4 | USED RAINBOW | :heavy_check_mark:
+ 5 | USED OWN LINKED LIST | :heavy_check_mark:
+ 6 | USED OWN TEMPLATE | :heavy_check_mark:
 
 ## :fries: CONTRIBUTION
 
