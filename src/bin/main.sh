@@ -25,19 +25,20 @@ do
     chmod +x abc.sh
     gnome-terminal --  sh -c "./abc.sh; bash"
     ############################################################
-
     rm abc.sh           #remove the abc.sh file
-
     echo "ORDER NUMBER: $order"   
     g++ user.cpp -o user.out
     ./user.out
 
+    #ADMIN MODE
     elif [ $str == "ADMIN" ]
     then
     g++ admin.cpp -o admin.out
     ./admin.out
     
     else
+    # remove all .out files
+    rm *.out
     killall bash #kill the extra terminal
     break
     fi

@@ -103,70 +103,68 @@ class ITEM
 			char straw[]="DATABASE/";
 			strcat(straw,itemname);
 			fgg = fopen(straw,"r");
-      	fscanf(fgg,"%s",name);
+      		fscanf(fgg,"%s",name);
 			fscanf(fgg,"%d",&presentquantity);
 			fscanf(fgg,"%d",&price);
 			fscanf(fgg,"%f",&discount);
-      	fscanf(fgg,"%d",&available);
+      		fscanf(fgg,"%d",&available);
       	
-      	//CALCULATIONS
-      	//RECENT BILL
-      	if(quantity<=presentquantity)
-      	{
-      		bill=bill+(price*quantity);
-      	}
-      	else
-      	{
-      		//bill=0;
-      	}
+			//CALCULATIONS
+			//RECENT BILL
+			if(quantity<=presentquantity)
+			{
+				bill=bill+(price*quantity);
+			}
+			else
+			{
+				//bill=0;
+			}
+			
+			fclose(fgg);
       	
-      	fclose(fgg);
-      	
-      	//READED THE PRESENT ITEM DATA
-      	//cout << name << presentquantity << price << discount << available << endl;
-      	//checking the items quantity is availble or not
-      	if(quantity<=presentquantity)
-      	{
-      		cout << "ITEM AND QUANTITY AVAILABLE"<<endl;
-      		presentquantity = presentquantity - quantity;
-      		//WRTING THE SOURCE FILE AGAIN
-      		FILE *fpt;
-      		char straw[]="DATABASE/";
-				strcat(straw,itemname);
-				fpt = fopen(straw,"w");
-				fprintf(fpt,"%s\n",name);
-				fprintf(fpt,"%d\n",presentquantity);
-				fprintf(fpt,"%d\n",price);
-				fprintf(fpt,"%f\n",discount);
-      		fprintf(fpt,"%d\n",available);
-				fclose(fpt);
-      	}
-      	else
-      	{	
-      		cout << "OUT OF STOCK" <<endl;
-      		//WRTING THE SOURCE FILE AGAIN FOR OUT OF STOCK TO MAKE AVAILABLE 0
-      		FILE *fpt;
-      		char straw[]="DATABASE/";
-				strcat(straw,itemname);
-				fpt = fopen(straw,"w");
-				fprintf(fpt,"%s\n",name);
-				fprintf(fpt,"%d\n",presentquantity);
-				fprintf(fpt,"%d\n",price);
-				fprintf(fpt,"%f\n",discount);
-				available=0;
-      		fprintf(fpt,"%d\n",available);
-				fclose(fpt);
-      	}
+			//READED THE PRESENT ITEM DATA
+			//cout << name << presentquantity << price << discount << available << endl;
+			//checking the items quantity is availble or not
+			if(quantity<=presentquantity)
+			{
+				cout << "ITEM AND QUANTITY AVAILABLE"<<endl;
+				presentquantity = presentquantity - quantity;
+				//WRTING THE SOURCE FILE AGAIN
+				FILE *fpt;
+				char straw[]="DATABASE/";
+					strcat(straw,itemname);
+					fpt = fopen(straw,"w");
+					fprintf(fpt,"%s\n",name);
+					fprintf(fpt,"%d\n",presentquantity);
+					fprintf(fpt,"%d\n",price);
+					fprintf(fpt,"%f\n",discount);
+				fprintf(fpt,"%d\n",available);
+					fclose(fpt);
+			}
+			else
+			{	
+				cout << "OUT OF STOCK" <<endl;
+				//WRTING THE SOURCE FILE AGAIN FOR OUT OF STOCK TO MAKE AVAILABLE 0
+				FILE *fpt;
+				char straw[50]="DATABASE/";
+					strcat(straw,itemname);
+					fpt = fopen(straw,"w");
+					fprintf(fpt,"%s\n",name);
+					fprintf(fpt,"%d\n",presentquantity);
+					fprintf(fpt,"%d\n",price);
+					fprintf(fpt,"%f\n",discount);
+					available=0;
+					fprintf(fpt,"%d\n",available);
+					fclose(fpt);
+			}
 		}
-		//NOT AVAILABLE
-		else
+		else	//NOT AVAILABLE
 		{
-			//bill=0;
 			cout << "SORRY!!!ITEM NOT AVAILABLE IN THE SHOP"<<endl;
 		}
 		
-	//OUTPUTTING
-	cout << "RECENT BILL:"<<bill<<endl;	
+		//OUTPUTTING
+		cout << "RECENT BILL:"<<bill<<endl;	
 	}
 	//CHECKING AVAIL VECTOR
 	int availvalue(char *itemname)
@@ -320,14 +318,14 @@ int main()
 	A.get_user_data();  //GETTING USER INFORMATION
 	//MENU CARD HERE -READ THE FILE IN DATABASE
 	A.readDatabase();
-	// exit(0);
+
 	cout << "YOU CAN ORDER" << endl;
 	
 	while(1)
 	{		
-		A.get_item_data();  //GETTING DATA OF ONE ITEM BY the user
-		A.put_data_file();	//PUTING USER DATA IN A FILE	
-		A.check();  //CHECKING DATA RIGHT OR NOT AND MAKING BILL
+		A.get_item_data();  								//GETTING DATA OF ONE ITEM BY the user
+		A.put_data_file();									//PUTING USER DATA IN A FILE	
+		A.check();  										//CHECKING DATA RIGHT OR NOT AND MAKING BILL
 		//*********************************************************************************************************************************************************************//
 		cout << "Do you want more items(true/false)" << endl;
 		cin >> ans;

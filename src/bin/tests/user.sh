@@ -3,5 +3,6 @@
 #!bin/bash
 
 cd ..
+cd ..
 g++ user.cpp -o user.out
 ./user.out
